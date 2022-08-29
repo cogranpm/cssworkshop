@@ -1,0 +1,266 @@
+.test {
+    background-color: aliceblue;
+}
+
+.mainGrid {
+    display: flex;
+}
+
+.workoutContainer {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.leftPanel {
+    height: 100vh;
+}
+
+
+.modal {
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 2% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.elementSelector {
+    padding: 2px;
+}
+
+.elementPicker {
+    display: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+
+.elementPickerRow {}
+
+.elementPickerHeaderColumn {
+    width: 120px;
+}
+
+.elementPickerHeader {
+    padding: 0;
+}
+
+.elementPickerColumn {
+    padding: 20px;
+    vertical-align: top;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+}
+
+.elementContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.elementContainerRow {
+    display: flex;
+    width: 100%;
+}
+
+.elementContainerColumn {
+    width: 180px;
+    padding: 20px;
+    vertical-align: top;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+    border: 3px solid purple;
+}
+
+.elementList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: (255,255,255,0.5);
+}
+
+.selectedElement {
+    background: #5073e9;
+    color: #ffff;
+}
+
+.element {
+    position: relative;
+    padding-left: 10px;
+    height: 20px;
+    line-height: 20px;
+    margin: 2px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    width: 150px;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px #666;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}
+
+.normalElement {
+    background-color: white;
+}
+
+li.element:active {
+    background-color: #eee;
+    color: white;
+    box-shadow: inset 0 1px 1px #666;
+}
+
+.wrapper {
+    width: 500px;
+    display: flex;
+}
+
+.wrapper>div {
+    flex: 1 1 150px;
+}
+
+.attributeEditor {
+    display: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.attributeEditorCol {
+    width: 120px;
+    padding: 20px;
+    vertical-align: top;
+}
+
+.attributeEditorHeader {
+    padding: 0;
+}
+
+.styleList {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 2px;
+}
+
+.styleList>ul {
+    flex: 1 1;
+    list-style-type: none;
+}
+
+.styleList>ul>li {
+    font-size: 14px;
+    font-family: Verdana;
+}
+
+.tightWrapper {
+    width: 430px;
+    display: flex;
+}
+
+.tightWrapper>div {
+    flex: 1 1;
+}
+
+.attributeWrapper {
+    width: 275px;
+    display: flex;
+}
+
+.attributeWrapper>div {
+    flex: 1 1 80px;
+}
+
+.formLabel {
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    margin-right: 15px;
+}
+
+.formLabel:after {
+    content: ":"
+}
+
+.formListItem {
+    margin-top: 10px;
+}
+
+.settings {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    grid-gap: 5px;
+}
+
+div.settings label {
+    width: 150px;
+    text-align: right;
+}
+
+div.settings label:after {
+    content: ":";
+}
+
+.helpPanel {
+    border: 1px solid black;
+    margin: 0;
+    padding: 1px;
+    background-color: lightblue;
+    text-align: left;
+}
+
+.helpPanel>ul {
+    list-style-type: none;
+}
+
+.toggled {
+    background-color: lightblue;
+    font-style: bold;
+}
+
+.borderedContainer {
+    border: 1px solid black;
+    padding: 5px;
+}

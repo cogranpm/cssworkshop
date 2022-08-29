@@ -1,0 +1,7 @@
+out
+.log
+.parcel-cache
+.svn
+dist
+node_modules
+out

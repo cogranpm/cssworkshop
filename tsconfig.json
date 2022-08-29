@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "~*": ["./*"]
+        },
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "jsx": "react",
+        "outDir": "./out",
+        "rootDir": "./src",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "downlevelIteration": true,
+        "sourceMap": true,
+        "lib": [
+            "es2018",
+            "dom"
+        ]
+    }
+}

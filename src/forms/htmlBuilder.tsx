@@ -9,7 +9,6 @@ import { builderContainerStyle, listContainerStyle, columnStyle, transparentBack
 
 export type BuilderProps = {
     document: HtmlDocument | undefined;
-    //elements: HtmlElement[];
     selectedElement: HtmlElement | undefined;
     setSelectedElement: Dispatch<React.SetStateAction<HtmlElement | undefined>>;
     saveHandler: (element: HtmlElement) => void;
@@ -77,7 +76,7 @@ export const HtmlBuilder = (props: BuilderProps) => {
         isRoot: boolean
     ): ReactNode => {
         return (
-            <div style={builderContainerStyle}>
+            <>
                 <div style={columnStyle}>
                     <BuilderBar
                         isRoot={isRoot}
@@ -96,16 +95,19 @@ export const HtmlBuilder = (props: BuilderProps) => {
                         ? renderColumn(element.children, element, false)
                         : "";
                 })}
-            </div>
+            </>
         );
     };
 
     return (
-        <div>
-            {props.document ?
-                renderColumn(props.document.elements, undefined, true)
-                :
-                ""}
+        <div style={{ margin: "0", padding: "0", height: "100%" }}>
+            <div style={builderContainerStyle}>
+                {props.document ?
+                    renderColumn(props.document.elements, undefined, true)
+                    :
+                    ""}
+
+            </div>
         </div>
     );
 };

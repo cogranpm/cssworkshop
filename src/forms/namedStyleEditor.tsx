@@ -1,5 +1,6 @@
 import React from "react";
 import { NamedStyle } from "~src/models/namedStyle";
+import { labelStyle } from "~src/shared/styles";
 import { StyleEditor } from "./stylesEditor";
 
 export interface NamedStyleEditorProps {
@@ -18,19 +19,21 @@ export const NamedStyleEditor = (props: NamedStyleEditorProps) => {
     };
 
     const containerStyle = {
+        display: "grid",
+        gridTemplateColumns: "85px 1fr",
         padding: "10px",
-        margin: "5px"
+        margin: "5px 0 5px 0"
     };
 
     const renderStyleEditor = (namedStyle: NamedStyle) => {
         return (
-            <div>
+            <div style={{ margin: "0", padding: "0" }}>
                 <div style={containerStyle}>
                     <label
                         htmlFor="selector"
-                        className="formLabel"
+                        style={labelStyle}
                     >
-                        selector
+                        selector:
                     </label>
                     <input id="selector" name="selector" type="text" value={namedStyle.selector} onChange={onChangeHandler} />
                 </div>

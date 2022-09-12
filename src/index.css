@@ -213,10 +213,10 @@ li.element:active {
 
 .formLabel {
     display: inline-block;
-    width: 140px;
+    width: 120px;
     text-align: right;
     font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-size: 10pt;
     margin-right: 15px;
 }
 

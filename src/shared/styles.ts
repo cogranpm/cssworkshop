@@ -4,7 +4,7 @@ export const labelFontSize = "13px";
 
 export const backgroundColor = "#e7eaed";
 
-export const transparentBackground = { backgroundColor: "tranparent" };
+export const transparentBackground = { backgroundColor: "transparent" };
 
 export const buttonIconStyle = { verticalAlign: "middle" };
 
@@ -20,7 +20,7 @@ export const sectionHeaderStyle = {
 };
 
 export const listContainerStyle = {
-    height: "372px"
+    height: "100%"
 };
 
 export const listStyle = {
@@ -30,14 +30,16 @@ export const listStyle = {
 };
 
 export const listItemStyle = {
-    margin: "2px 0"
+    margin: "2px 0",
+    padding: "4px"
 };
 
 export const columnStyle = {
     marginTop: "0",
-    padding: "4px",
-    borderRight: borderDef,
-    borderTop: borderDef,
+    height: "100%",
+    padding: "15px",
+    borderBottom: borderDef,
+    borderRight: borderDef
 };
 
 export const builderBarStyle = {
@@ -45,12 +47,13 @@ export const builderBarStyle = {
     gridTemplateColumns: "60px 60px",
     columnGap: "5px",
     background: "transparent",
-    margin: "2px"
+    margin: "2px 0 5px 5px"
 };
 
 export const builderContainerStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(6, 200px)",
+    gridTemplateRows: "auto",
 };
 
 export const tabsStyle = {

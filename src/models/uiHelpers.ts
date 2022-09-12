@@ -2,6 +2,7 @@ import { HtmlElement } from "./htmlElement";
 import { NamedStyle } from "./namedStyle";
 
 export enum EditorType {
+    Document,
     Elements,
     NamedStyles
 };

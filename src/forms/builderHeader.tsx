@@ -7,28 +7,28 @@ interface BuilderHeaderProps {
     doc: HtmlDocument | undefined;
     activeEditor: EditorType;
     setActiveEditor: React.Dispatch<React.SetStateAction<EditorType>>;
-    onChangeTitle: (e: any) => void;
 }
 
 const builderTopbarStyle = {
-  width: "100%",
+    width: "100%",
     padding: "0",
     margin: "0",
     display: "grid",
-    gridTemplateColumns: "250px 1fr",
+    gridTemplateColumns: "250px, 250px, 1fr",
     alignContent: "center",
+    borderBottom: borderDef
 };
-
-const titleEditorStyle = {
-    marginLeft: "200px"
-};
-
-
 
 export const BuilderHeader = (props: BuilderHeaderProps) => {
     return (
         <div style={builderTopbarStyle}>
             <div style={tabsStyle}>
+                <label
+                    style={tabLabelStyle(props.activeEditor === EditorType.Document)}
+                    onClick={(e: any) => props.setActiveEditor(EditorType.Document)}
+                >
+                    Document
+                </label>
                 <label
                     style={tabLabelStyle(props.activeEditor === EditorType.Elements)}
                     onClick={(e: any) => props.setActiveEditor(EditorType.Elements)}
@@ -41,17 +41,6 @@ export const BuilderHeader = (props: BuilderHeaderProps) => {
                 >
                     Named Styles
                 </label>
-            </div>
-            <div style={titleEditorStyle}>
-                <label className="formLabel" style={labelStyle} htmlFor="documentTitle">
-                    Document Title
-                </label>
-                <input
-                    disabled={props.doc === undefined}
-                    name="documentTitle"
-                    type="text"
-                    onChange={(e: any) => props.onChangeTitle(e)}
-                    value={props.doc ? props.doc.title : ""} />
             </div>
         </div>
     );

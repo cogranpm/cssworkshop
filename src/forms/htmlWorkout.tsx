@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HtmlBuilder } from './htmlBuilder';
+import { DocumentBuilder } from './documentBuilder';
 import { NamedStyleBuilder } from './namedStylesBuilder';
 import { NamedStyleEditor } from './namedStyleEditor';
 import { HtmlWorkoutlist } from "./htmlWorkoutlist";
@@ -17,8 +18,9 @@ import {
 import { makeElement, makeRootElement } from '~src/models/htmlElementFactory';
 import { EditorType } from '~src/models/uiHelpers';
 import { BuilderHeader } from "./builderHeader";
-import { testData } from "~src/models/htmlDocumentFactory";
+//import { testData } from "~src/models/htmlDocumentFactory";
 import { borderDef } from '~src/shared/styles';
+import { clear, getAll, store } from '~src/repository/workoutRepository';
 
 export interface HtmlWorkoutProps {
     document: HtmlDocument | undefined;
@@ -33,30 +35,42 @@ const builderSectionStyle = {
 
 const builderContentStyle = {
     padding: "0",
-    borderLeft: borderDef
+    borderLeft: borderDef,
+    height: "100vh"
 };
 
 export const HtmlWorkout = (props: HtmlWorkoutProps) => {
 
-    const [documents, setDocuments] = useState(testData);
+    const [documents, setDocuments] = useState<HtmlDocument[]>([]);
     const [doc, setDoc] = useState<HtmlDocument | undefined>(props.document);
     const [selectedElement, setSelectedElement] = useState<HtmlElement | undefined>(undefined);
     const [selectedStyle, setSelectedStyle] = useState<NamedStyle | undefined>(undefined);
-    const [activeEditor, setActiveEditor] = useState(EditorType.Elements);
-    const [title, setTitle] = useState(doc ? doc.title : "");
+    const [activeEditor, setActiveEditor] = useState(EditorType.Document);
+    //    const [title, setTitle] = useState(doc ? doc.title : "");
+
+    useEffect(() => {
+        updateDocuments();
+        if (doc) {
+            store(doc);
+        }
+    }, [doc]);
 
 
     useEffect(() => {
-        if (doc) {
-            if (title !== doc.title) {
-                doc.title = title;
-            }
-        }
-    }, [title]);
+        const runIt = async () => {
+            setDocuments(await getAll());
+        };
+        runIt();
 
-  useEffect(() => {
-      updateDocuments();
-  }, [doc]);
+        return () => {
+            /*
+            const runClear = async () => {
+              await clear();
+            };
+            runClear();
+            */
+        }
+    }, []);
 
     const updateDocuments = () => {
         const updatedDocuments = documents.map((document) => {
@@ -128,9 +142,60 @@ export const HtmlWorkout = (props: HtmlWorkoutProps) => {
         }
     };
 
-    const onChangeTitle = async (e: any) => {
-        setTitle((current) => e.target.value);
-    };
+    /*
+      const onChangeTitle = async (e: any) => {
+          setTitle((current) => e.target.value);
+      };
+    */
+
+    const leftPane = () => {
+        return (
+            <div className="pane-content">
+                <div style={builderSectionStyle}>
+                    <HtmlWorkoutlist
+                        documents={documents}
+                        setDocuments={setDocuments}
+                        selectedDocument={doc}
+                        setSelectedDocument={setDoc} />
+                    <div style={builderContentStyle}>
+                        <BuilderHeader
+                            doc={doc}
+                            setActiveEditor={setActiveEditor}
+                            activeEditor={activeEditor}
+                        />
+                        {activeEditor === EditorType.Document ?
+                            <DocumentBuilder
+                                doc={doc}
+                                setDoc={setDoc}
+                            />
+                            :
+                            ""}
+                        {activeEditor === EditorType.Elements ?
+                            <HtmlBuilder
+                                document={doc}
+                                selectedElement={selectedElement}
+                                setSelectedElement={setSelectedElement}
+                                addHandler={addHandler}
+                                trashHandler={trashHandler}
+                                saveHandler={saveHandler}
+                                updateElements={updateElements}
+                            />
+                            :
+                            ""}
+                        {activeEditor === EditorType.NamedStyles ?
+                            <NamedStyleBuilder
+                                doc={doc}
+                                selectedStyle={selectedStyle}
+                                setSelectedStyle={setSelectedStyle}
+                                updateDoc={setDoc}
+                            />
+                            : ""
+                        }
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="workoutContainer">
@@ -139,41 +204,7 @@ export const HtmlWorkout = (props: HtmlWorkoutProps) => {
                     <div className="pane-content leftPanel">
                         <ReflexContainer orientation="horizontal">
                             <ReflexElement className="left-pane" minSize={200}>
-                                <div className="pane-content">
-                                    <div style={builderSectionStyle}>
-                                        <HtmlWorkoutlist
-                                            documents={documents}
-                                            setDocuments={setDocuments}
-                                            selectedDocument={doc}
-                                            setSelectedDocument={setDoc} />
-                                        <div style={builderContentStyle}>
-                                            <BuilderHeader
-                                                doc={doc}
-                                                setActiveEditor={setActiveEditor}
-                                                activeEditor={activeEditor}
-                                                onChangeTitle={onChangeTitle}
-                                            />
-                                            {activeEditor === EditorType.Elements ?
-                                                <HtmlBuilder
-                                                    document={doc}
-                                                    selectedElement={selectedElement}
-                                                    setSelectedElement={setSelectedElement}
-                                                    addHandler={addHandler}
-                                                    trashHandler={trashHandler}
-                                                    saveHandler={saveHandler}
-                                                    updateElements={updateElements}
-                                                />
-                                                :
-                                                <NamedStyleBuilder
-                                                    doc={doc}
-                                                    selectedStyle={selectedStyle}
-                                                    setSelectedStyle={setSelectedStyle}
-                                                    updateDoc={setDoc}
-                                                />
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
+                              {leftPane()}
                             </ReflexElement>
                             <ReflexSplitter propagate={true} />
                             <ReflexElement className="right-pane">

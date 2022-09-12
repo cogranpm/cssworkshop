@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { ALL_ELEMENTS } from "~src/models/elements";
 import { GLOBAL_ATTRIBUTES } from "~src/models/attributes";
 import { HtmlElement } from "~src/models/htmlElement";
-import { labelStyle, listStyle, listItemStyle } from "~src/shared/styles";
+import { listStyle, listItemStyle } from "~src/shared/styles";
 
 export type AttributeEditorProps = {
     element: HtmlElement;
@@ -62,7 +62,6 @@ export const AttributeEditor = (props: AttributeEditorProps) => {
         return (
             <li style={listItemStyle}>
                     <label
-                        style={labelStyle}
                         className="formLabel"
                         htmlFor={attribute}
                     >
@@ -76,7 +75,6 @@ export const AttributeEditor = (props: AttributeEditorProps) => {
             </li>
         );
     }
-
 
     const renderTagAttributes = (pickedElement: string[]) => {
 

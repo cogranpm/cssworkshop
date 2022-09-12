@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { HtmlDocument } from "~src/models/htmlDocument";
 import { make } from "~src/models/htmlDocumentFactory";
-import { Plus, Trash } from 'react-bootstrap-icons';
-import { borderDef, builderBarStyle, backgroundColor, imageButtonStyle, buttonIconStyle } from "~src/shared/styles";
+import { Plus, Trash, FileEarmarkFill } from 'react-bootstrap-icons';
+import { borderDef, builderBarStyle, backgroundColor, imageButtonStyle, buttonIconStyle, labelStyle, labelFont } from "~src/shared/styles";
+import { remove } from "~src/repository/workoutRepository";
 
 export interface HtmlWorkoutListProps {
     documents: HtmlDocument[];
@@ -13,7 +14,7 @@ export interface HtmlWorkoutListProps {
 
 const backgroundStyle = {
     backgroundColor: backgroundColor,
-    padding: "4px",
+    padding: "14px",
     margin: "0",
     borderTop: borderDef
 };
@@ -42,8 +43,9 @@ export const HtmlWorkoutlist = (props: HtmlWorkoutListProps) => {
         props.setDocuments([...props.documents, newDoc]);
     };
 
-    const trashHandler = () => {
+    const trashHandler = async () => {
         if (props.selectedDocument) {
+            await remove(props.selectedDocument.id);
             const docCopy = props.selectedDocument as HtmlDocument;
             props.setDocuments(props.documents.filter((doc) => doc.id !== docCopy.id));
             props.setSelectedDocument(undefined);
@@ -52,23 +54,28 @@ export const HtmlWorkoutlist = (props: HtmlWorkoutListProps) => {
 
     return (
         <div style={backgroundStyle}>
-            <div style={builderBarStyle}>
-                <button
-                    type="button"
-                    onClick={() => addHandler()}
-                    style={imageButtonStyle}
-                >
-                    add
-                    <Plus style={buttonIconStyle}/>
-                </button>
-                <button
-                    type="button"
-                    disabled={(props.selectedDocument === undefined)}
-                    onClick={() => trashHandler()}
-                    style={imageButtonStyle}
-                >
-                    trash
-                    <Trash style={buttonIconStyle} /></button>
+            <div style={{ padding: "5px" }}>
+                <label style={{ fontFamily: labelFont, fontSize: "13pt", marginRight: "23px" }}>
+                    Documents
+                </label>
+                <div style={builderBarStyle}>
+                    <button
+                        type="button"
+                        onClick={() => addHandler()}
+                        style={imageButtonStyle}
+                    >
+                        add
+                        <Plus style={buttonIconStyle} />
+                    </button>
+                    <button
+                        type="button"
+                        disabled={(props.selectedDocument === undefined)}
+                        onClick={() => trashHandler()}
+                        style={imageButtonStyle}
+                    >
+                        trash
+                        <Trash style={buttonIconStyle} /></button>
+                </div>
             </div>
             <div style={childContainerStyle}>
                 <ul style={listStyle}>
@@ -76,10 +83,32 @@ export const HtmlWorkoutlist = (props: HtmlWorkoutListProps) => {
                         return (
                             <li
                                 key={item.id}
-                                className={`element ${props.selectedDocument && props.selectedDocument.id === item.id ? 'selectedElement' : 'normalElement'}`}
                                 onClick={(e: any) => onSelectItem(item)}
+                                style={{
+                                    width: "100%",
+                                    fontFamily: "'Roboto', sans-serif",
+                                    fontSize: "13pt",
+                                    cursor: "hand",
+                                    padding: "4px",
+                                    color: "#000000",
+                                    textAlign: "left",
+                                    height: "25px",
+                                    backgroundColor: (props.selectedDocument && props.selectedDocument.id === item.id ? "#5073e9" : "transparent")
+                                }}
                             >
-                                {item.title}
+                                <div style={{ verticalAlign: "middle" }}>
+                                    <span style={{ verticalAlign: "middle", marginRight: "2px" }}><FileEarmarkFill /></span>
+                                    <span>
+                                        <a href="#"
+                                            style=
+                                            {{
+                                              textDecoration: "none",
+                                              color: (props.selectedDocument && props.selectedDocument.id === item.id ? "#FFF" : "#000000") }}
+                                        >
+                                            {item.title}
+                                        </a>
+                                    </span>
+                                </div>
                             </li>
                         )
                     })}

@@ -15,3 +15,13 @@ preview prod build:
 run this in the dist directory after doing a build: python -m http.server
 refer to this link for explanation: https://threejs.org/docs/#manual/en/introduction/How-to-run-things-locally
 
+
+Cloudflare Pages:
+this is deployed to cloudflare pages
+
+url: https://cssworkshop.pages.dev/
+
+run a git push to get it uploaed to github, to which cloudflare is connected
+
+I guess it has auto deployment enabled
+

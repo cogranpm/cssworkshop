@@ -20,9 +20,9 @@ const ATTRIBUTE_TAB = 1;
 const STYLE_TAB = 2;
 
 const formContainerStyle = {
-  borderTop: borderDef,
-  borderRight: borderDef,
-  borderBottom: borderDef
+    borderTop: borderDef,
+    borderRight: borderDef,
+    borderBottom: borderDef
 };
 
 export const ElementEditor = (props: ElementPickerProps) => {
@@ -55,11 +55,12 @@ export const ElementEditor = (props: ElementPickerProps) => {
                     Style
                 </label>
             </div>
-            <div style={formContainerStyle}>
+            <div style={{borderTop: borderDef, padding: "20px"}}>
                 <form>
                     <div style={{
                         visibility: selectedTab === ELEMENT_TAB ? "visible" : "hidden",
-                        maxHeight: selectedTab === ELEMENT_TAB ? 5000 : 0
+                        maxHeight: selectedTab === ELEMENT_TAB ? "100%" : 0,
+                        height: selectedTab === ATTRIBUTE_TAB ? "auto" : 0
                     }}>
 
                         <ElementPicker
@@ -70,7 +71,8 @@ export const ElementEditor = (props: ElementPickerProps) => {
 
                     <div style={{
                         visibility: selectedTab === ATTRIBUTE_TAB ? "visible" : "hidden",
-                        maxHeight: selectedTab === ATTRIBUTE_TAB ? 5000 : 0
+                        maxHeight: selectedTab === ATTRIBUTE_TAB ? "100%" : 0,
+                        height: selectedTab === ATTRIBUTE_TAB ? "auto" : 0
                     }}>
                         <div>
                             <AttributeEditor
@@ -81,15 +83,13 @@ export const ElementEditor = (props: ElementPickerProps) => {
                     </div>
                     <div style={{
                         visibility: selectedTab === STYLE_TAB ? "visible" : "hidden",
-                        maxHeight: selectedTab === STYLE_TAB ? 5000 : 0
+                        maxHeight: selectedTab === STYLE_TAB ? "100%" : 0,
+                        height: selectedTab === ATTRIBUTE_TAB ? "auto" : 0
                     }}>
-                        <div>
-                            <br />
-                            <StyleEditor
-                                styles={props.element.styles}
-                                saveHandler={saveStyle}
-                            />
-                        </div>
+                        <StyleEditor
+                            styles={props.element.styles}
+                            saveHandler={saveStyle}
+                        />
                     </div>
                 </form>
             </div>

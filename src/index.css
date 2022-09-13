@@ -132,12 +132,11 @@
     margin: 2px;
     border: 1px solid #aaa;
     border-radius: 8px;
-    width: 150px;
     cursor: pointer;
     box-shadow: 2px 2px 3px #666;
     user-select: none;
     font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-size: 10pt;
 }
 
 .normalElement {

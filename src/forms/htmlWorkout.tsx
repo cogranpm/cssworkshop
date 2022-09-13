@@ -142,12 +142,6 @@ export const HtmlWorkout = (props: HtmlWorkoutProps) => {
         }
     };
 
-    /*
-      const onChangeTitle = async (e: any) => {
-          setTitle((current) => e.target.value);
-      };
-    */
-
     const leftPane = () => {
         return (
             <div className="pane-content">
@@ -200,10 +194,10 @@ export const HtmlWorkout = (props: HtmlWorkoutProps) => {
     return (
         <div className="workoutContainer">
             <ReflexContainer orientation="vertical">
-                <ReflexElement className="left-pane" minSize={200}>
+                <ReflexElement className="left-pane" minSize={1000}>
                     <div className="pane-content leftPanel">
                         <ReflexContainer orientation="horizontal">
-                            <ReflexElement className="left-pane" minSize={200}>
+                            <ReflexElement className="left-pane">
                               {leftPane()}
                             </ReflexElement>
                             <ReflexSplitter propagate={true} />
@@ -217,7 +211,7 @@ export const HtmlWorkout = (props: HtmlWorkoutProps) => {
                 </ReflexElement>
                 <ReflexSplitter propagate={true} />
                 <ReflexElement className="right-pane" >
-                    <div className="pane-content" style={{ height: "100%" }}>
+                    <div className="pane-content" >
                         {selectedElement && activeEditor === EditorType.Elements ?
                             <ElementEditor
                                 element={selectedElement}

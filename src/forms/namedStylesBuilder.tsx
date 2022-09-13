@@ -55,7 +55,7 @@ export const NamedStyleBuilder = (props: NamedStyleBuilderProps) => {
 
 
     return (
-        <div style={builderContainerStyle}>
+        <div>
             <div style={columnStyle}>
                 <div style={builderBarStyle}>
                     <button

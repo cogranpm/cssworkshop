@@ -3,6 +3,7 @@ import { VOID_ELEMENTS } from "~src/models/elements";
 import { HtmlElement } from "~src/models/htmlElement";
 import { HtmlDocument } from "~src/models/htmlDocument";
 import { convertAttributeValuesToObject, createElementStyles, createNamedStyles } from "~src/models/uiHelpers";
+import { labelFont } from "~src/shared/styles";
 
 export type PreviewProps = {
     doc: HtmlDocument | undefined
@@ -43,6 +44,12 @@ export const HtmlPreview = (props: PreviewProps) => {
             {props.doc !== undefined
                 ?
                 <div>
+                  <p style={{
+                    fontFamily: labelFont,
+                    fontSize: "14pt",
+                    fontWeight: "bold"
+                  }}>Preview</p>
+                  <hr/>
                     <div>
                         {renderElements(props.doc.elements)}
                     </div>
@@ -51,7 +58,7 @@ export const HtmlPreview = (props: PreviewProps) => {
                     }}></style>
                 </div>
                 :
-             <div></div>
+               ""
             }
         </>
     );

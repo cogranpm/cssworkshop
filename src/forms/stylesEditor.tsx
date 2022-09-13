@@ -11,9 +11,8 @@ export type StyleEditorProps = {
 
 export const StyleEditor = (props: StyleEditorProps) => {
 
-    //help button was pushed on it
     const [selectedItem, setSelectedItem] = useState<string>("");
-    const [group, setGroup] = useState<string>("");
+    const [group, setGroup] = useState<string>(cssGroups[0]);
 
     const getListLength = () => {
         return (group.length > 0) ? styleDefs.length : styleDefs.length / 6;
@@ -146,7 +145,7 @@ export const StyleEditor = (props: StyleEditorProps) => {
     };
 
     return (
-        <>
+        <div>
             <div style={pickerButtonGridStyle}>
                 {renderPickerButtons()}
             </div>
@@ -169,6 +168,6 @@ export const StyleEditor = (props: StyleEditorProps) => {
                     </div>
                 </>
             }
-        </>
+        </div>
     );
 };

@@ -11,7 +11,7 @@ export type AttributeEditorProps = {
 
 const containerStyle = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fill, minmax(340px, 345px))",
+  gridTemplateColumns: "repeat(auto-fill, minmax(340px, 365px))",
   alignItems: "start",
   justifyContent: "start",
 };

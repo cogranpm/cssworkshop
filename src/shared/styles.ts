@@ -53,7 +53,7 @@ export const builderBarStyle = {
 export const builderContainerStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(6, 200px)",
-    gridTemplateRows: "auto",
+    gridTemplateRows: "auto"
 };
 
 export const tabsStyle = {

@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+
+.workoutHeaderBox {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+}
+
+.workoutHeader {
+	font-size: 16pt;
+	font-family:Indie Flower, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-weight: bold;
+	color: blue;
+}

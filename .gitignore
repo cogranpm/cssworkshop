@@ -4,4 +4,5 @@ out
 .svn
 dist
 node_modules
-out
+.project
+
